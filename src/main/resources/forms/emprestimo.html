@@ -1,20 +1,76 @@
 <div>
-	<div class="form-group">
-		<label for="mensagem">Mensagem</label>
-		<input type="text" id="mensagem" name="mensagem" class="form-control" value="" />
-	</div>
+	<fieldset>
+		<legend>Dados emprestimo</legend>
+		<div>
+			<fieldset>
+				<legend>Cliente</legend>
+				<div>
+					<div class="form-group">
+						<label for="dadosEmprestimo.cliente.cpf">Cpf</label>
+						<input
+							type="number"
+							class="form-control"
+							id="dadosEmprestimo.cliente.cpf"
+							name="dadosEmprestimo.cliente.cpf"
+							step="1"
+							value=""
+						/>
+					</div>
+					<div class="form-group">
+						<label for="dadosEmprestimo.cliente.email">Email</label>
+						<input type="text" id="dadosEmprestimo.cliente.email" name="dadosEmprestimo.cliente.email" class="form-control" value="" />
+					</div>
+					<div class="form-group">
+						<label for="dadosEmprestimo.cliente.nome">Nome</label>
+						<input type="text" id="dadosEmprestimo.cliente.nome" name="dadosEmprestimo.cliente.nome" class="form-control" value="" />
+					</div>
+					<div class="form-group">
+						<label for="dadosEmprestimo.cliente.salario">Salario</label>
+						<input
+							type="number"
+							class="form-control"
+							id="dadosEmprestimo.cliente.salario"
+							name="dadosEmprestimo.cliente.salario"
+							step="0.01"
+							value=""
+						/>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group">
+				<label for="dadosEmprestimo.prazoMeses">Prazo meses</label>
+				<input type="number" class="form-control" id="dadosEmprestimo.prazoMeses" name="dadosEmprestimo.prazoMeses" step="1" value="" />
+			</div>
+			<div class="form-group">
+				<label for="dadosEmprestimo.valor">Valor</label>
+				<input type="number" class="form-control" id="dadosEmprestimo.valor" name="dadosEmprestimo.valor" step="0.01" value="" />
+			</div>
+		</div>
+	</fieldset>
 	<script>
 		/* Utility function that fills the form with the data received from the kogito runtime */
 		function setFormData(data) {
 			if (!data) {
 				return;
 			}
-			document.getElementById("mensagem").value = data?.mensagem ?? "";
+			document.getElementById("dadosEmprestimo.cliente.cpf").value = data?.dadosEmprestimo?.cliente?.cpf ?? "";
+			document.getElementById("dadosEmprestimo.cliente.email").value = data?.dadosEmprestimo?.cliente?.email ?? "";
+			document.getElementById("dadosEmprestimo.cliente.nome").value = data?.dadosEmprestimo?.cliente?.nome ?? "";
+			document.getElementById("dadosEmprestimo.cliente.salario").value = data?.dadosEmprestimo?.cliente?.salario ?? "";
+			document.getElementById("dadosEmprestimo.prazoMeses").value = data?.dadosEmprestimo?.prazoMeses ?? "";
+			document.getElementById("dadosEmprestimo.valor").value = data?.dadosEmprestimo?.valor ?? "";
 		}
 		/* Utility function to generate the expected form output as a json object */
 		function getFormData() {
 			const formData = {};
-			formData.mensagem = document.getElementById("mensagem").value;
+			formData.dadosEmprestimo = {};
+			formData.dadosEmprestimo.cliente = {};
+			formData.dadosEmprestimo.cliente.cpf = Number(document.getElementById("dadosEmprestimo.cliente.cpf").value);
+			formData.dadosEmprestimo.cliente.email = document.getElementById("dadosEmprestimo.cliente.email").value;
+			formData.dadosEmprestimo.cliente.nome = document.getElementById("dadosEmprestimo.cliente.nome").value;
+			formData.dadosEmprestimo.cliente.salario = Number(document.getElementById("dadosEmprestimo.cliente.salario").value);
+			formData.dadosEmprestimo.prazoMeses = Number(document.getElementById("dadosEmprestimo.prazoMeses").value);
+			formData.dadosEmprestimo.valor = Number(document.getElementById("dadosEmprestimo.valor").value);
 			return formData;
 		}
 		/* Utility function to validate the form on the 'beforeSubmit' Lifecycle Hook */
