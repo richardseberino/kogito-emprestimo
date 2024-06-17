@@ -1,17 +1,16 @@
 package com.seberino.s2i;
 
+import javax.enterprise.context.ApplicationScoped;
 
 public class AvisaCliente 
 {
 
-    public void enviaEmail(String email, String mensagem)
+    @ApplicationScoped
+    public String enviaEmail(String email, String mensagem)
     {
         System.out.println("Envia comunicado ao cliente! " + mensagem);
+
+        return "email enviado!";
     }
 
-
-    public void teste()
-    {
-        System.out.println("teste - Setvico");
-    }
 }

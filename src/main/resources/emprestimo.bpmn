@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_PibUMA5zED2zhY8S5RQeZA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_HyEWoA69ED2zhY8S5RQeZA" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_dadosEmprestimoItem" structureRef="com.seberino.s2i.DadosEmprestimo"/>
   <bpmn2:itemDefinition id="_aprovacaoItem" structureRef="Boolean"/>
   <bpmn2:itemDefinition id="_comentarioItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_emailItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_retornoEmailItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__240B6F30-6A21-40AE-9622-7D61E9FF310E_SkippableInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__240B6F30-6A21-40AE-9622-7D61E9FF310E_PriorityInputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__240B6F30-6A21-40AE-9622-7D61E9FF310E_CommentInputXItem" structureRef="Object"/>
@@ -18,8 +20,21 @@
   <bpmn2:itemDefinition id="__240B6F30-6A21-40AE-9622-7D61E9FF310E_dadosInputXItem" structureRef="com.seberino.s2i.DadosEmprestimo"/>
   <bpmn2:itemDefinition id="__240B6F30-6A21-40AE-9622-7D61E9FF310E_observacoesOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__240B6F30-6A21-40AE-9622-7D61E9FF310E_aprovadoOutputXItem" structureRef="Boolean"/>
-  <bpmn2:collaboration id="_1D7E2ECA-562B-43D7-8A85-C455EDE172DD" name="Default Collaboration">
-    <bpmn2:participant id="_CBA5266E-9311-4C7D-89F1-64209D0E3397" name="Pool Participant" processRef="emprestimo"/>
+  <bpmn2:itemDefinition id="_72849888-DBAC-4BAD-8707-369C7143B55E_InMessageType" structureRef=""/>
+  <bpmn2:itemDefinition id="_72849888-DBAC-4BAD-8707-369C7143B55E_OutMessageType" structureRef=""/>
+  <bpmn2:itemDefinition id="__72849888-DBAC-4BAD-8707-369C7143B55E_emailInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__72849888-DBAC-4BAD-8707-369C7143B55E_mensagemInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__72849888-DBAC-4BAD-8707-369C7143B55E_retornoOutputXItem" structureRef="String"/>
+  <bpmn2:message id="_72849888-DBAC-4BAD-8707-369C7143B55E_InMessage" itemRef="_72849888-DBAC-4BAD-8707-369C7143B55E_InMessageType"/>
+  <bpmn2:message id="_72849888-DBAC-4BAD-8707-369C7143B55E_OutMessage" itemRef="_72849888-DBAC-4BAD-8707-369C7143B55E_OutMessageType"/>
+  <bpmn2:interface id="_72849888-DBAC-4BAD-8707-369C7143B55E_ServiceInterface" name="com.seberino.s2i.AvisaCliente" implementationRef="com.seberino.s2i.AvisaCliente">
+    <bpmn2:operation id="_72849888-DBAC-4BAD-8707-369C7143B55E_ServiceOperation" name="enviaEmail" implementationRef="enviaEmail">
+      <bpmn2:inMessageRef>_72849888-DBAC-4BAD-8707-369C7143B55E_InMessage</bpmn2:inMessageRef>
+      <bpmn2:outMessageRef>_72849888-DBAC-4BAD-8707-369C7143B55E_OutMessage</bpmn2:outMessageRef>
+    </bpmn2:operation>
+  </bpmn2:interface>
+  <bpmn2:collaboration id="_8BE7D9A5-5A48-4BE2-A143-35E12EEDE60C" name="Default Collaboration">
+    <bpmn2:participant id="_B1598636-6842-4600-B488-5A5876FE71FF" name="Pool Participant" processRef="emprestimo"/>
   </bpmn2:collaboration>
   <bpmn2:process id="emprestimo" drools:packageName="com.example" drools:version="1.0" drools:adHoc="false" name="emprestimo" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
@@ -45,6 +60,20 @@
       </bpmn2:extensionElements>
     </bpmn2:property>
     <bpmn2:property id="comentario" itemSubjectRef="_comentarioItem" name="comentario">
+      <bpmn2:extensionElements>
+        <drools:metaData name="customTags">
+          <drools:metaValue><![CDATA[output]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:property>
+    <bpmn2:property id="email" itemSubjectRef="_emailItem" name="email">
+      <bpmn2:extensionElements>
+        <drools:metaData name="customTags">
+          <drools:metaValue><![CDATA[internal]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:property>
+    <bpmn2:property id="retornoEmail" itemSubjectRef="_retornoEmailItem" name="retornoEmail">
       <bpmn2:extensionElements>
         <drools:metaData name="customTags">
           <drools:metaValue><![CDATA[output]]></drools:metaValue>
@@ -98,7 +127,7 @@
       <bpmn2:outgoing>_9BB67F67-EF43-4DA2-A7FA-BC520960CC7D</bpmn2:outgoing>
       <bpmn2:outgoing>_A2AF8C9C-B969-4B3E-AEBB-DD98A6EC7536</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:scriptTask id="_72849888-DBAC-4BAD-8707-369C7143B55E" name="Comunica Cliente" scriptFormat="http://www.java.com/java">
+    <bpmn2:serviceTask id="_72849888-DBAC-4BAD-8707-369C7143B55E" drools:serviceimplementation="Java" drools:serviceinterface="com.seberino.s2i.AvisaCliente" drools:serviceoperation="enviaEmail" name="Comunica Cliente" implementation="Java" operationRef="_72849888-DBAC-4BAD-8707-369C7143B55E_ServiceOperation">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Comunica Cliente]]></drools:metaValue>
@@ -106,8 +135,34 @@
       </bpmn2:extensionElements>
       <bpmn2:incoming>_9BB67F67-EF43-4DA2-A7FA-BC520960CC7D</bpmn2:incoming>
       <bpmn2:outgoing>_C5EDB42D-4293-48B7-B318-B775D1CBF250</bpmn2:outgoing>
-      <bpmn2:script>System.out.println("teste de comunicacao");</bpmn2:script>
-    </bpmn2:scriptTask>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_72849888-DBAC-4BAD-8707-369C7143B55E_emailInputX" drools:dtype="String" itemSubjectRef="__72849888-DBAC-4BAD-8707-369C7143B55E_emailInputXItem" name="email"/>
+        <bpmn2:dataInput id="_72849888-DBAC-4BAD-8707-369C7143B55E_mensagemInputX" drools:dtype="String" itemSubjectRef="__72849888-DBAC-4BAD-8707-369C7143B55E_mensagemInputXItem" name="mensagem"/>
+        <bpmn2:dataOutput id="_72849888-DBAC-4BAD-8707-369C7143B55E_retornoOutputX" drools:dtype="String" itemSubjectRef="__72849888-DBAC-4BAD-8707-369C7143B55E_retornoOutputXItem" name="retorno"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_72849888-DBAC-4BAD-8707-369C7143B55E_emailInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_72849888-DBAC-4BAD-8707-369C7143B55E_mensagemInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_72849888-DBAC-4BAD-8707-369C7143B55E_retornoOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:targetRef>_72849888-DBAC-4BAD-8707-369C7143B55E_emailInputX</bpmn2:targetRef>
+        <bpmn2:assignment>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression"><![CDATA[richard@seberino.com.br]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression"><![CDATA[_72849888-DBAC-4BAD-8707-369C7143B55E_emailInputX]]></bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>comentario</bpmn2:sourceRef>
+        <bpmn2:targetRef>_72849888-DBAC-4BAD-8707-369C7143B55E_mensagemInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_72849888-DBAC-4BAD-8707-369C7143B55E_retornoOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>retornoEmail</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:serviceTask>
     <bpmn2:userTask id="_240B6F30-6A21-40AE-9622-7D61E9FF310E" name="Aprova Emprestimo">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -167,8 +222,8 @@
         <bpmn2:sourceRef>_240B6F30-6A21-40AE-9622-7D61E9FF310E_aprovadoOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>aprovacao</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
-      <bpmn2:potentialOwner id="_PidwcA5zED2zhY8S5RQeZA">
-        <bpmn2:resourceAssignmentExpression id="_PidwcQ5zED2zhY8S5RQeZA">
+      <bpmn2:potentialOwner id="_HyIBAA69ED2zhY8S5RQeZA">
+        <bpmn2:resourceAssignmentExpression id="_HyIBAQ69ED2zhY8S5RQeZA">
           <bpmn2:formalExpression>admin</bpmn2:formalExpression>
         </bpmn2:resourceAssignmentExpression>
       </bpmn2:potentialOwner>
@@ -306,7 +361,7 @@
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_PibUMA5zED2zhY8S5RQeZA</bpmn2:source>
-    <bpmn2:target>_PibUMA5zED2zhY8S5RQeZA</bpmn2:target>
+    <bpmn2:source>_HyEWoA69ED2zhY8S5RQeZA</bpmn2:source>
+    <bpmn2:target>_HyEWoA69ED2zhY8S5RQeZA</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
