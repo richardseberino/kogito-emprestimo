@@ -46,7 +46,7 @@
             <artifactId>quarkus-arc</artifactId>
         </dependency>
 <!-- producao-->
-
+<!--
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
@@ -55,18 +55,30 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-reactive</artifactId>
         </dependency>
-
+-->
     
     <!--- Dev-->
-    <!--≈
+    
         <dependency>
             <groupId>org.kie.kogito</groupId>
             <artifactId>runtime-tools-quarkus-extension</artifactId>
         </dependency>
- -->
+ 
         <dependency>
             <groupId>org.kie.kogito</groupId>
             <artifactId>kogito-addons-quarkus-process-svg</artifactId>
+        </dependency>
+
+        <!-- suporte a e-mail-->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-mailer</artifactId>
+        </dependency>
+
+        <!-- client de Rest API-->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-jackson</artifactId>
         </dependency>
 
         <dependency>
